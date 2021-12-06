@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.fraunhofer.ipa.ros.ros1ros2BridgeGenerator
+Bundle-SymbolicName: de.fraunhofer.ipa.ros.ros1ros2BridgeGenerator;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Export-Package: de.fraunhofer.ipa.ros.ros1ros2BridgeGenerator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: javax.inject;version="1.0.0",
+ org.eclipse.ui.handlers,
+ org.eclipse.xtext.ui.resource
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.fraunhofer.ipa.ros.ros1ros2BridgeGenerator.Activator
+Require-Bundle: org.eclipse.xtext.builder,
+ org.eclipse.xtext.ui,
+ de.fraunhofer.ipa.ros,
+ de.fraunhofer.ipa.ros.xtext.ide,
+ de.fraunhofer.ipa.ros.xtext.ui
