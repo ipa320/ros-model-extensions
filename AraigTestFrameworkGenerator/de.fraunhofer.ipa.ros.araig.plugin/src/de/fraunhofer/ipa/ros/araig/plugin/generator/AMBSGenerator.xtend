@@ -36,6 +36,8 @@ class AMBSGenerator extends AbstractGenerator {
 	List<String> action_clients 
 	
 	LaunchFileCompiler launch_compiler= new LaunchFileCompiler()
+	ConfigFileCompiler config_compiler= new ConfigFileCompiler()
+	PackageCompiler pkg_compiler = new PackageCompiler()
 	
 	def get_test_type_name(String name){
 		return test_type_name = name
@@ -68,10 +70,20 @@ class AMBSGenerator extends AbstractGenerator {
 			var CharSequence cq = fun.invoke(launch_compiler, pub_ports,sub_ports, action_clients, test_type_name, robot_name) as CharSequence
 			fsa.generateFile(String.join("_", test_type_name, robot_name, code_type) +"/launch/" + test_type_name + ".launch", cq)		
 		}catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Please define " + String.join("_", test_type_name, code_type));
+			System.out.println("Please define " + String.join("_", test_type_name, code_type + "in LaunchFileCompiler Class "));
 		}
-
+		
+		try {	
+			var Method fun = config_compiler.getClass().getDeclaredMethod(String.join("_", test_type_name, code_type), List, List, List, String, String)
+			var CharSequence cq = fun.invoke(config_compiler, pub_ports,sub_ports, action_clients, test_type_name, robot_name) as CharSequence
+			fsa.generateFile(String.join("_", test_type_name, robot_name, code_type) +"/config/" + test_type_name + ".yaml", cq)		
+		}catch (NoSuchMethodException e) {
+			System.out.println("Please define " + String.join("_", test_type_name, code_type + "in ConfigFileCompiler Class "));
 		}
+		
+		fsa.generateFile(String.join("_", test_type_name, robot_name, code_type) + "/package.xml", pkg_compiler.manifest(test_type_name, robot_name,code_type))		
+		fsa.generateFile(String.join("_", test_type_name, robot_name, code_type) +"/CMakeLists.txt", pkg_compiler.cmakeList(test_type_name, robot_name,code_type))		
+		
+	}
 		
 }

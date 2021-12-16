@@ -14,7 +14,7 @@ class LaunchFileCompiler {
 	    <arg name="src2" default ="/dev/video4" />
 	    <arg name="port" default="/dev/ttyACM0" />
 	<!-- sensors -->
-	    <include file="$(find «test_type_name»_«robot_name»_python)/launch/includes/common.launch">
+	    <include file="$(find ambs_test_common)/launch/common.launch">
 	        <args name="src1" value="$(arg cam1)" />
 	        <args name="src2" value="$(arg cam2)" />
 	        <args name="port" value="$(arg port)" />
@@ -98,7 +98,7 @@ class LaunchFileCompiler {
 	    
 	    <!-- speed plotter -->
 	    <node name="plotter" type="rqt_multiplot" pkg="rqt_multiplot"
-	        args="--multiplot-config $(find «test_type_name»_«robot_name»_python)/config/plotter/speed_position.xml --multiplot-run-all">
+	        args="--multiplot-config $(find ambs_test_common)/config/plotter/speed_position.xml --multiplot-run-all">
 	    </node>
 	
 	</launch>
@@ -106,6 +106,6 @@ class LaunchFileCompiler {
 	'''
 	
 	def braking_test_cplusplus(List<String> pubs, List<String> subs, List<String> action_servers, String test_type_name, String robot_name) '''
-	hi
+	TODO
 	'''
 }
