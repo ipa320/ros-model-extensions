@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+## Welcome to the RosTooling manual
 
-You can use the [editor on GitHub](https://github.com/ipa320/ros-model-extensions/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The ROStooling toolchain comprises a series of tools, plugins and scripts developed to facilitate the use of ros-model, a family of DSLs for the formal description of components and systems developed for the ROS (Robot Operating System) framework. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The following diagram shows the overview of the RosTooling blocks: 
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+The purpose of this document is to describe the extension options of RosTooling by developing plugins for each of its blocks.  
 
-# Header 1
-## Header 2
-### Header 3
+With this concept we aim to establish a federative development process to extend the tooling, which means that anyone can contribute by adding new functionalities to RosTooling but without modifying the core. 
 
-- Bulleted
-- List
+The following sections that go through all the blocks one by one are organized as follows, a first sub-section defines how the main module is developed, the it continues with the developer's perspective and the knowledges required to develop an extension as well as an estimation of the difficulty. In the next sub-section we analyze the technical possibilities that exist for extensibility, finally each section ends with, if available, a list of existing extensions that can be used as examples or templates. 
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ipa320/ros-model-extensions/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
