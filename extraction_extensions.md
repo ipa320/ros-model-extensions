@@ -75,17 +75,39 @@ The top-level URDF object is Robot which consists of child elements like links a
 
 This Robot object is passed to the kinematics model generator, which iterates through the children and dumps the DSL grammar text for each element.
 
-<font color="green">… to be completed </font>
+<font color="green">… to be completed.. </font>
 
 
 ### Available examples and tutorials
 
 - M2M from other MDE approaches (using EMF)
+
+For the project [SeRoNet](https://www.seronet-projekt.de/) a M2M conversion was created to automatically convert the ros-models to SeRoNet native components models. The source code of the full implementation and the documentation is publicly online under: [SeRoNet-Tooling-ROS-Mixed-Port](https://github.com/seronet-project/SeRoNet-Tooling-ROS-Mixed-Port).
+
+
 - Static code analysis (using analyzers like HAROS)
+
+HAROS is a framework for static code analysis, in this case our plugin uses the result of the analysis to find the communication interfaces of each ROS node and directly translate it into our model structure, which can be validated or used to compose it with other nodes forming a system,
+
+The repository [ros-model-extractors](https://github.com/ipa320/ros-model-extractors) holds a set of ROS containers where you can easily do the analysis for different distros without the need to install locally the necessary software. These containers take as input argument the URL of the GitHub repository that contains the code.
+
+A single [Python script](https://github.com/ipa320/ros-model-extractors/blob/main/ros_model_extractor.py) is the responsible of call HAROS to analyze and get the result of the analysis. Then it [calls the Python API for ros-model](https://github.com/ipa320/ros-model-extractors/blob/main/ros_model_extractor.py#L118) to auto-generate the corresponding models.
+
 - Runtime interpreters
+
+The package [rosgraph_monitor](https://github.com/ipa320/rosgraph_monitor) contains a set of observers to assist in system monitoring tasks. One of these observers uses ros-model to diagnose whether during system execution all nodes defined at design time are present. The following diagram summarizes the architecture of the approach:
+
+![RosGraph observer architecture](images/diagnosis_approach.png)
+
+The ros_graph_parser running together with the target system and thanks to the [rosgraph library](http://wiki.ros.org/rosgraph) extract the list of nodes running and the interfaces they offer. The parser then calls the ros-model Python implementation to convert the information found into a rossystem model. See the source code of the [graph_observer.py](https://github.com/ipa320/rosgraph_monitor/blob/main/src/rosgraph_monitor/observers/graph_observer.py).
+
+Once we have the model of the running system (Current.rossystem) we compare it with the model that describe our desired system (desired.rossystem). The module to compare these two models is available as part of the Python API library for ros-model ([source code](https://github.com/ipa320/ros_model_parser/blob/master/src/ros_model_parser/model_comparator.py)).
+
+The instructions about how to run this software are up-to-date under: [ROS system diagnostics](https://github.com/ipa320/rosgraph_monitor#ros-system-diagnostics)
+
+
 - Parsers from other "models" (i.e., URDF)
 
 <font color="green"> extra??</font>
 - URDF parser (python) links to generator (single library)
 - Import URDF parser which uses existing libraries with additional API and then call the kinematics_model_generator (python) to generate kinematics model file (model-to-model using python).
-
